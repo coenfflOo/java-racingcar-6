@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.Map;
 
 public class RacingCar {
     private final String name;

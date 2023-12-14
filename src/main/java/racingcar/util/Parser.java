@@ -3,7 +3,6 @@ package racingcar.util;
 import static racingcar.exception.ErrorCode.*;
 
 import java.util.*;
-import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +11,7 @@ public class Parser {
     private static final int POSITIVE_NUMBER_MINIMUM_RANGE = 1;
     private static final Pattern REGEX_ROUND_PATTERN = Pattern.compile("^[1-9][0-9]*$");
     // 쉼표(,)로 구분되는 이름인지 확인하는 정규식
-    private static final Pattern REGEX_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]{1,5}(,[a-zA-Z0-9]{1,5}){1,}$");
+    private static final Pattern REGEX_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9가-힣]{1,5}(,[a-zA-Z0-9가-힣]{1,5})+$");
 
 
     // Default Constructor
@@ -43,6 +42,7 @@ public class Parser {
             INVALID_NAME_BLANK.validate(() -> hasWhitespace(name));
             cars.add(name);
         }
+        INVALID_NAME_DUPLICATE.validate(() -> isDuplicate(cars));
         return cars;
     }
 
@@ -70,6 +70,12 @@ public class Parser {
     // 양수인가
     private static boolean isNotPositiveInteger(Integer value) {
         return value < POSITIVE_NUMBER_MINIMUM_RANGE;
+    }
+
+    //리스트의 크기가 set으로 변환했을 때의 크기와 동일한가(중복 검사)
+    public static boolean isDuplicate(List<String> input) {
+        Set<String> set = new HashSet<>(input);
+        return set.size() != input.size();
     }
 
     // == 정규표현식 제약 조건== //

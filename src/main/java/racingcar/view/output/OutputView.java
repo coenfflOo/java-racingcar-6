@@ -11,6 +11,7 @@ public final class OutputView extends OutputWriter {
     public static void printResult() {
         printMessageResponse(RESPONSE_RESULT);
     }
+
     public static void printCarPosition(String name, int position) {
         printFormat2(RESULT_FORMAT.getFormat(), name, "-".repeat(position));
         printNewLine();

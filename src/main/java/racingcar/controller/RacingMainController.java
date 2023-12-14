@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.CarName;
@@ -14,7 +13,7 @@ public class RacingMainController {
     private static int roundCount;
     private static List<RacingCar> racingCars;
 
-    private RacingMainController(){
+    private RacingMainController() {
     }
 
     public static void start() {
@@ -36,7 +35,7 @@ public class RacingMainController {
         }
     }
 
-    private  static void announceWinners(List<RacingCar> racingCars) {
+    private static void announceWinners(List<RacingCar> racingCars) {
         int maxPosition = RacingService.getMaxPosition(racingCars);
         String winners = RacingService.getWinners(racingCars, maxPosition);
         OutputView.printWinner(winners);
