@@ -1,6 +1,6 @@
 package racingcar.view.output;
 
-import lotto.view.constant.OutputMessage;
+import racingcar.view.constant.OutputMessage;
 
 sealed class OutputWriter
         permits ErrorOutputWriter, OutputView {
@@ -18,6 +18,10 @@ sealed class OutputWriter
 
     public static void printFormat(String format, Object object){
         System.out.printf(format,object);
+    }
+
+    public static void printFormat2(String format, Object object, Object object2){
+        System.out.printf(format,object,object2);
     }
 
     public static void printMessageResponse(OutputMessage responseMessage) {
