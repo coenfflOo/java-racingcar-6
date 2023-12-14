@@ -21,4 +21,16 @@ public class InputView {
         }
     }
 
+    public static int readRoundCount() {
+        while (true) {
+            try {
+                System.out.print(REQUEST_ROUND_COUNT.getMessage());
+                final String input = InputUtil.readLine();
+                return Parser.parseRoundInput(input);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
 }

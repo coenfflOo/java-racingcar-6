@@ -13,7 +13,7 @@ public class RacingMainController {
 
     public static void start() {
         carName = InputView.readNamesInfo();
-
+        rountCount = InputView.readRoundCount();
     }
 
 }
