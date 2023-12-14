@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    private static final String DELIMITER = ";";
+    private static final String DELIMITER = ",";
     private static final int POSITIVE_NUMBER_MINIMUM_RANGE = 1;
     private static final Pattern REGEX_ROUND_PATTERN = Pattern.compile("^[1-9][0-9]*$");
     // 쉼표(,)로 구분되는 이름인지 확인하는 정규식
@@ -38,10 +38,12 @@ public class Parser {
     //==split Logic ==//
     public static List<String> splitInput(String input) {
         String[] names = input.split(DELIMITER);
+        List<String> cars = new ArrayList<>();
         for (String name : names) {
             INVALID_NAME_BLANK.validate(() -> hasWhitespace(name));
+            cars.add(name);
         }
-        return Arrays.asList(names);
+        return cars;
     }
 
     //== Validation Method ==//

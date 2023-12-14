@@ -12,6 +12,7 @@ import racingcar.view.output.OutputView;
 public class RacingMainController {
     private static CarName carName;
     private static int roundCount;
+    private static List<RacingCar> racingCars;
 
     private RacingMainController(){
     }
@@ -19,29 +20,25 @@ public class RacingMainController {
     public static void start() {
         carName = InputView.readNamesInfo();
         roundCount = InputView.readRoundCount();
+        OutputView.printNewLine();
         racePlaying();
+        announceWinners(racingCars);
     }
 
     private static void racePlaying() {
-        List<RacingCar> racingCars = carName.getCarNames().stream()
+        racingCars = carName.getCarNames().stream()
                 .map(RacingCar::new)
-                .toList();
+                .collect(Collectors.toList());
+
+        OutputView.printResult();
         for (int i = 0; i < roundCount; i++) {
             RacingService.racePlaying(racingCars);
         }
     }
 
-//    private  static void announceWinners(List<RacingCar> racingCars) {
-//        int maxPosition = racingCars.stream()
-//                .mapToInt(RacingCar::getPosition)
-//                .max()
-//                .orElse(0);
-//
-//        String winners = racingCars.stream()
-//                .filter(car -> car.getPosition() == maxPosition)
-//                .map(RacingCar::getName)
-//                .collect(Collectors.joining(", "));
-//
-//        OutputView.printWinner(winners);
-//    }
+    private  static void announceWinners(List<RacingCar> racingCars) {
+        int maxPosition = RacingService.getMaxPosition(racingCars);
+        String winners = RacingService.getWinners(racingCars, maxPosition);
+        OutputView.printWinner(winners);
+    }
 }

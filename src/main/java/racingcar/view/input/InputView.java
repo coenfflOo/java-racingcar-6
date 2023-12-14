@@ -9,27 +9,42 @@ import racingcar.domain.CarName;
 
 public class InputView {
     public static CarName readNamesInfo() {
-        while (true) {
-            try {
-                System.out.print(REQUEST_CAR_NAMES.getMessage());
-                final String input = InputUtil.readLine();
-                final List<String> names = Parser.parseInputToList(input);
-                return CarName.of(names);
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
+//        while (true) {
+//            try {
+//                System.out.println(REQUEST_CAR_NAMES.getMessage());
+//                final String input = InputUtil.readLine();
+//                final List<String> names = Parser.parseInputToList(input);
+//                return CarName.of(names);
+//            } catch (IllegalArgumentException exception) {
+//                System.out.println(exception.getMessage());
+//            }
+//        }
+        try {
+            System.out.println(REQUEST_CAR_NAMES.getMessage());
+            final String input = InputUtil.readLine();
+            final List<String> names = Parser.parseInputToList(input);
+            return CarName.of(names);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException(exception.getMessage());
         }
     }
 
     public static int readRoundCount() {
-        while (true) {
-            try {
-                System.out.print(REQUEST_ROUND_COUNT.getMessage());
-                final String input = InputUtil.readLine();
-                return Parser.parseRoundInput(input);
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
+//        while (true) {
+//            try {
+//                System.out.println(REQUEST_ROUND_COUNT.getMessage());
+//                final String input = InputUtil.readLine();
+//                return Parser.parseRoundInput(input);
+//            } catch (IllegalArgumentException exception) {
+//                System.out.println(exception.getMessage());
+//            }
+//        }
+        try {
+            System.out.println(REQUEST_ROUND_COUNT.getMessage());
+            final String input = InputUtil.readLine();
+            return Parser.parseRoundInput(input);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException(exception.getMessage());
         }
     }
 

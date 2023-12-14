@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CarName {
@@ -15,5 +16,6 @@ public class CarName {
     public List<String> getCarNames() {
         return CarNames;
     }
+
 
 }
